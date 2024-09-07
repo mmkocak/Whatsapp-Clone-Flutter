@@ -5,7 +5,7 @@ import 'package:chatapp/Model/ChatModel.dart';
 import 'package:flutter/material.dart';
 
 class CreateGroup extends StatefulWidget {
-  CreateGroup({Key key}) : super(key: key);
+  CreateGroup({Key? key}) : super(key: key);
 
   @override
   _CreateGroupState createState() => _CreateGroupState();
@@ -13,7 +13,7 @@ class CreateGroup extends StatefulWidget {
 
 class _CreateGroupState extends State<CreateGroup> {
   List<ChatModel> contacts = [
-    ChatModel(name: "Dev Stack", status: "A full stack developer"),
+    ChatModel(name: "Dev Stack", status: "A full stack developer",),
     ChatModel(name: "Balram", status: "Flutter Developer..........."),
     ChatModel(name: "Saket", status: "Web developer..."),
     ChatModel(name: "Bhanu Dev", status: "App developer...."),

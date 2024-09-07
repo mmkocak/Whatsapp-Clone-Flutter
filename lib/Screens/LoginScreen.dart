@@ -4,14 +4,14 @@ import 'package:chatapp/Screens/Homescreen.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({Key key}) : super(key: key);
+  LoginScreen({Key? key}) : super(key: key);
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  ChatModel sourceChat;
+  late ChatModel sourceChat;
   List<ChatModel> chatmodels = [
     ChatModel(
       name: "Dev Stack",

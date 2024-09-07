@@ -4,7 +4,7 @@ import 'package:chatapp/Screens/SelectContact.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatefulWidget {
-  ChatPage({Key key, this.chatmodels, this.sourchat}) : super(key: key);
+  ChatPage({Key? key,required this.chatmodels, required this.sourchat}) : super(key: key);
   final List<ChatModel> chatmodels;
   final ChatModel sourchat;
 

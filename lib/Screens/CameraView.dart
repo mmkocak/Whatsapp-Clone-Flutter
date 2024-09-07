@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 class CameraViewPage extends StatelessWidget {
-  const CameraViewPage({Key key, this.path}) : super(key: key);
+  const CameraViewPage({Key? key, required this.path}) : super(key: key);
   final String path;
 
   @override
