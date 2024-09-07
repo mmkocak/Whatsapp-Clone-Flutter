@@ -8,11 +8,6 @@
    </p>
 </a>
 
-<p align="center">
-( You can buy the full source code of tutorial in $30 (mail me):
- <a href="mailto:devstackin@gmail.com"> devstackin@gmail.com</a>
- )
-</p>
 
 In this full tutrial source code you will get:
 - One to one chatting
