@@ -5,7 +5,7 @@ import 'package:chatapp/Screens/CreateGroup.dart';
 import 'package:flutter/material.dart';
 
 class SelectContact extends StatefulWidget {
-  SelectContact({Key key}) : super(key: key);
+  SelectContact({Key? key}) : super(key: key);
 
   @override
   _SelectContactState createState() => _SelectContactState();

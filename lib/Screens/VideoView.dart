@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoViewPage extends StatefulWidget {
-  const VideoViewPage({Key key, this.path}) : super(key: key);
+  const VideoViewPage({Key? key, required this.path}) : super(key: key);
   final String path;
 
   @override
@@ -12,7 +12,7 @@ class VideoViewPage extends StatefulWidget {
 }
 
 class _VideoViewPageState extends State<VideoViewPage> {
-  VideoPlayerController _controller;
+  late VideoPlayerController _controller;
 
   @override
   void initState() {
@@ -65,7 +65,7 @@ class _VideoViewPageState extends State<VideoViewPage> {
             Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height - 150,
-              child: _controller.value.initialized
+              child: _controller.value.isInitialized
                   ? AspectRatio(
                       aspectRatio: _controller.value.aspectRatio,
                       child: VideoPlayer(_controller),

@@ -7,28 +7,34 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
-List<CameraDescription> cameras;
+late List<CameraDescription> cameras;
 
 class CameraScreen extends StatefulWidget {
-  CameraScreen({Key key}) : super(key: key);
+  CameraScreen({Key? key}) : super(key: key);
 
   @override
   _CameraScreenState createState() => _CameraScreenState();
 }
 
 class _CameraScreenState extends State<CameraScreen> {
-  CameraController _cameraController;
-  Future<void> cameraValue;
-  bool isRecoring = false;
+  late CameraController _cameraController;
+  late Future<void> cameraValue;
+  bool isRecording = false;
   bool flash = false;
-  bool iscamerafront = true;
+  bool isCameraFront = true;
   double transform = 0;
 
   @override
   void initState() {
     super.initState();
+    _initializeCamera();
+  }
+
+  void _initializeCamera() async {
+    cameras = await availableCameras();
     _cameraController = CameraController(cameras[0], ResolutionPreset.high);
     cameraValue = _cameraController.initialize();
+    setState(() {});
   }
 
   @override
@@ -87,14 +93,14 @@ class _CameraScreenState extends State<CameraScreen> {
                         onLongPress: () async {
                           await _cameraController.startVideoRecording();
                           setState(() {
-                            isRecoring = true;
+                            isRecording = true;
                           });
                         },
                         onLongPressUp: () async {
                           XFile videopath =
                               await _cameraController.stopVideoRecording();
                           setState(() {
-                            isRecoring = false;
+                            isRecording = false;
                           });
                           Navigator.push(
                               context,
@@ -104,9 +110,9 @@ class _CameraScreenState extends State<CameraScreen> {
                                       )));
                         },
                         onTap: () {
-                          if (!isRecoring) takePhoto(context);
+                          if (!isRecording) takePhoto(context);
                         },
-                        child: isRecoring
+                        child: isRecording
                             ? Icon(
                                 Icons.radio_button_on,
                                 color: Colors.red,
@@ -119,24 +125,26 @@ class _CameraScreenState extends State<CameraScreen> {
                               ),
                       ),
                       IconButton(
-                          icon: Transform.rotate(
-                            angle: transform,
-                            child: Icon(
-                              Icons.flip_camera_ios,
-                              color: Colors.white,
-                              size: 28,
-                            ),
+                        icon: Transform.rotate(
+                          angle: transform,
+                          child: Icon(
+                            Icons.flip_camera_ios,
+                            color: Colors.white,
+                            size: 28,
                           ),
-                          onPressed: () async {
-                            setState(() {
-                              iscamerafront = !iscamerafront;
-                              transform = transform + pi;
-                            });
-                            int cameraPos = iscamerafront ? 0 : 1;
-                            _cameraController = CameraController(
-                                cameras[cameraPos], ResolutionPreset.high);
-                            cameraValue = _cameraController.initialize();
-                          }),
+                        ),
+                        onPressed: () async {
+                          setState(() {
+                            isCameraFront = !isCameraFront;
+                            transform = transform + pi;
+                          });
+                          int cameraPos = isCameraFront ? 0 : 1;
+                          _cameraController = CameraController(
+                              cameras[cameraPos], ResolutionPreset.high);
+                          cameraValue = _cameraController.initialize();
+                          setState(() {});
+                        },
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -161,10 +169,12 @@ class _CameraScreenState extends State<CameraScreen> {
   void takePhoto(BuildContext context) async {
     XFile file = await _cameraController.takePicture();
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (builder) => CameraViewPage(
-                  path: file.path,
-                )));
+      context,
+      MaterialPageRoute(
+        builder: (builder) => CameraViewPage(
+          path: file.path,
+        ),
+      ),
+    );
   }
 }

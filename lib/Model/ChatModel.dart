@@ -1,6 +1,6 @@
 class ChatModel {
   String name;
-  String icon;
+  String? icon;
   bool isGroup;
   String time;
   String currentMessage;
@@ -8,13 +8,13 @@ class ChatModel {
   bool select = false;
   int id;
   ChatModel({
-    this.name,
-    this.icon,
-    this.isGroup,
-    this.time,
-    this.currentMessage,
-    this.status,
+    this.name = "No Name",
+     this.icon,
+     this.isGroup = false,
+     this.time = "No Time",
+     this.currentMessage = "No Messages",
+     this.status = "No Status",
     this.select = false,
-    this.id,
+     this.id = 1,
   });
 }
