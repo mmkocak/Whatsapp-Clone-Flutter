@@ -13,8 +13,6 @@ Things are not there yet:
 - Group chat functionality
 - Calling and Voice features
 
-**Please note in $30 you will going to get the full tutorial code, which I have covered in youtube, It is just a tutorial code not real whatsapp code**
-
 <img src= "https://github.com/DevStack06/images/blob/master/ChatImages/chatapp.png"></img>
 
 
